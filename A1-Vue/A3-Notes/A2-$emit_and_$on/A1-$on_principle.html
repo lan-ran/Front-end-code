@@ -1,24 +1,24 @@
 <!--
-    /A1-Vue/A3-Notes/A2-$emit_and_$on/A3-$on_principle.html
+    /A1-Vue/A3-Notes/A2-$emit_and_$on/A1-$on_principle.html
 -->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>$on 实现原理</title>
-    <script src="../Z9-Static/vue.v2.6.12.js"></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>$on 实现原理</title>
+	<script src="../Z9-Static/vue.v2.6.12.js"></script>
 </head>
 
 <body>
 
-<div id="root1">
-    <button @click="boost1"></button>
-</div>
+	<div id="root1">
+		<button @click="boost1"></button>
+	</div>
 
-<script>
-    // 执行函数 不能是一个数组 否则会在 Created 之前报错
+	<script>
+		// 执行函数 不能是一个数组 否则会在 Created 之前报错
     const root1Vm = new Vue({
         el: '#root1',
         data() {
@@ -43,7 +43,7 @@
         }
 
     })
-</script>
+	</script>
 </body>
 
 </html>
