@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$on 实现原理</title>
+    <script src="../Z9-Static/vue.v2.6.12.js"></script>
+</head>
+
+<body>
+
+<div id="root1">
+    <button @click="boost1"></button>
+</div>
+
+<script>
+    // 执行函数 不能是一个数组 否则会在 Created 之前报错
+    const root1Vm = new Vue({
+        created() {
+            // 不能这样绑定函数
+            this.$on('my_events'[this.handleEvents, this.handleEvents2])
+        },
+        methods: {
+            handleEvents(param) {
+                console.log(this.message, param)
+            },
+            handleEvents2(param) {
+                console.log('hello vue 2', param)
+            },
+        }
+    })
+
+</script>
+</body>
+
+</html>

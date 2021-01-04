@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$on 实现原理</title>
+    <script src="../Z9-Static/vue.v2.6.12.js"></script>
+</head>
+
+<body>
+
+<div id="root1">
+    <button @click="boost1"></button>
+</div>
+
+<script>
+    // 可以为 一个 事件 绑定 多个 执行函数
+    const root2Vm = new Vue({
+        el: '#root1',
+        data() {
+            return {
+                message: 'hello vue'
+            }
+        },
+        created() {
+            // 这些 函数 会按 绑定顺序 依次执行 #通过 this.$emit()
+            this.$on('my_events', this.handleEvents)
+            this.$on('my_events', this.handleEvents2)
+        },
+        methods: {
+            handleEvents(param) {
+                console.log(this.message, param)
+            },
+            handleEvents2(param) {
+                console.log('hello vue 2', param)
+            },
+            boost1() {
+                this.$emit('my_events', 'my params')
+            }
+        }
+
+    })
+
+</script>
+</body>
+
+</html>
