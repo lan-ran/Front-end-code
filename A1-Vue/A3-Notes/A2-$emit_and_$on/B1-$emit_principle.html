@@ -1,0 +1,47 @@
+<!--
+    /A1-Vue/A3-Notes/A2-$emit_and_$on/B1-$emit_principle.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$emit 实现原理</title>
+    <script src="../Z9-Static/vue.v2.6.12.js"></script>
+</head>
+
+<body>
+
+<div id="root1">
+    <button @click="boost1">点击</button>
+</div>
+
+<script>
+    const root2Vm = new Vue({
+        el: '#root1',
+        data() {
+            return {
+                message: 'hello vue'
+            }
+        },
+        created() {
+            this.$on('my_events', this.handleEvents)
+        },
+        methods: {
+            handleEvents(param) {
+                console.log(this.message, param)
+            },
+            boost1() {
+                // 打断点 看源码
+                this.$emit('my_events', 'my params')
+            }
+        }
+
+    })
+
+</script>
+</body>
+
+</html>
+
