@@ -2,15 +2,16 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>模拟实现 v-show 指令</title>
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模拟实现 v-show 指令</title>
+<!--    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>-->
+    <script src="../Z9-Static/vue.v2.6.12.js"></script>
 </head>
 
 <body>
 
-  <div id="app">
+<div id="app">
     <input type="button" value="++" @click="countAdd">
     <input type="button" value="--" @click="countDelete">
 
@@ -20,57 +21,57 @@
     <!-- 条件 count > 0  显示 ， count <= 0 不显示 -->
     <h1 v-change="count">如果不 ++ ，你看不见我</h1>
 
-  </div>
+</div>
 
-  <script>
+<script>
     let vm = new Vue({
-      el: '#app',
-      data() {
-        return {
-          count: 0,
-        }
-      },
-      methods: {
-        countAdd() {
-          this.count++;
+        el: '#app',
+        data() {
+            return {
+                count: 0,
+            }
         },
-        countDelete() {
-          this.count--;
-        }
-      },
-      directives: {
-        change: {
-          /**
-           * 第一次找到时绑定
-           * @param el 当前绑定的原生 dom 元素
-           */
-          bind(el, bindings) {
-            console.log('bindings...', el, bindings)
-
-            if (bindings.value >= 1) {
-              el.setAttribute('style', 'display:block');
-            } else {
-              el.setAttribute('style', 'display:none');
+        methods: {
+            countAdd() {
+                this.count++;
+            },
+            countDelete() {
+                this.count--;
             }
+        },
+        directives: {
+            change: {
+                /**
+                 * 第一次找到时绑定
+                 * @param el 当前绑定的原生 dom 元素
+                 */
+                bind(el, bindings) {
+                    console.log('bindings...', el, bindings)
 
-          },
-          update(el, bindings) {
-            console.log('updating...', el, bindings)
+                    if (bindings.value >= 1) {
+                        el.setAttribute('style', 'display:block');
+                    } else {
+                        el.setAttribute('style', 'display:none');
+                    }
 
-            if (bindings.value >= 1) {
-              el.setAttribute('style', 'display:block')
-            } else {
-              el.setAttribute('style', 'display:none')
+                },
+                update(el, bindings) {
+                    console.log('updating...', el, bindings)
+
+                    if (bindings.value >= 1) {
+                        el.setAttribute('style', 'display:block')
+                    } else {
+                        el.setAttribute('style', 'display:none')
+                    }
+                },
+                unbind(el, bindings) {
+                    console.log('unbind', el, bindings)
+                }
+
             }
-          },
-          unbind(el, bindings) {
-            console.log('unbind', el, bindings)
-          }
-
         }
-      }
-    }) 
-  </script>
+    })
+</script>
 </body>
 
 </html>
